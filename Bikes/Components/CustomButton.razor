@@ -1,0 +1,26 @@
+﻿<style>
+    .custombutton{
+        width: 115px;
+        height: 4.2vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #383838;
+        font-weight: 700;
+        border-radius: 7px;
+        box-shadow: 0 0 0.5px 0.5px #383838, 0 0 0 6px #d1d1d1, 0 0 0 8px white, 0 0 0 9.5px #4d4d4d;
+        background-color: silver;
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.25)), to(#e6e6e6));
+      }  
+</style>
+
+
+<div class="custombutton">
+    @ButtonText
+</div>
+
+@code{
+
+    [Parameter]
+    public string? ButtonText { get; set; }
+}

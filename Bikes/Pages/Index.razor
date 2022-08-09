@@ -1,0 +1,49 @@
+﻿@page "/"
+@using Entities
+@using static MudBlazor.CategoryTypes
+@inject HttpClient client
+@inject IJSRuntime JsRuntime
+
+<PageTitle>Bikes</PageTitle>
+
+<MudTable Items="@bikesList" Loading="@isLoading" LoadingProgressColor="Color.Info" Breakpoint="Breakpoint.Sm" Hover="true" SortLabel="Sort By" FixedHeader="true">
+    <HeaderContent>
+        <MudTh><MudTableSortLabel SortBy="new Func<Bike, object>(x=>x.Make)">Make</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Bike, object>(x=>x.Model)">Model</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Bike, object>(x=>x.Year)">Year</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Bike, object>(x=>x.Displacement)">Displacement</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Bike, object>(x=>x.Price)">Price</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Bike, object>(x=>x.Terrain)">Terrain</MudTableSortLabel></MudTh>
+        <MudTh>Description</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Make">@context.Make</MudTd>
+        <MudTd DataLabel="Model">@context.Model</MudTd>
+        <MudTd DataLabel="Year">@context.Year</MudTd>
+        <MudTd DataLabel="Displacement">@context.Displacement</MudTd>
+        <MudTd DataLabel="Price">@context.Price</MudTd>
+        <MudTd DataLabel="Terrain">@context.Terrain</MudTd>
+        @if(windowWidth>=576)
+        {
+            <MudExpansionPanel Dense>
+                <MudText Style="max-width: 300px;">
+                    @context.Description
+                </MudText>
+            </MudExpansionPanel>
+        }
+        else{
+            <MudExpansionPanel Dense Text="Show Description">
+                <MudText Style="max-width: 300px;">
+                    @context.Description
+                </MudText>
+            </MudExpansionPanel>
+        }
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager HorizontalAlignment="HorizontalAlignment.Center" />
+    </PagerContent>
+</MudTable>
+
+<div style="width: 100%; height: 10vh; display: flex; justify-content: center; align-items: center;">
+    <Bikes.Components.CustomButton ButtonText="Checkout"></Bikes.Components.CustomButton>
+</div>
